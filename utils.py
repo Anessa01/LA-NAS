@@ -195,8 +195,9 @@ def load_data_b(dataset_str = 'data/desktop-cpu-core-i7-7820x-fp32.pickle', sep 
         fetemp = [(int(i) - 2)  for i in fetemp]
         fetemp.insert(0, 6)
         fetemp = np.array(fetemp)
-        fetemp = np.pad(adtemp, ((0, 0),(0, L)), 'constant')
-        feature.append(np.eye(7)[fetemp])
+        fetemp = np.eye(7)[fetemp]
+        fetemp = np.pad(fetemp, ((0, L),(0, 0)), 'constant')
+        feature.append(fetemp)
     adj_t = []
     feature_t = []
     for i in range(test_len):

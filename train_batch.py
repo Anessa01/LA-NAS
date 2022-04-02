@@ -35,9 +35,13 @@ def main():
     errbound = args.err_bound
     logger = get_logger('log/' + args.save + 'log')
 
-    adj, feature, train_y, adj_t, feature_t, test_y = load_data()
+    adj, feature, train_y, adj_t, feature_t, test_y = load_data_b()
     train_len = len(adj)
     test_len = len(adj_t)
+    adj = torch.tensor(adj)
+    feature = torch.tensor(feature)
+    train_y = torch.tensor(train_y)
+
     torch_trainset = Data.TensorDataset(adj, feature, train_y)
     loader = Data.DataLoader(
         dataset=torch_trainset,
