@@ -1,7 +1,9 @@
+from ast import Constant
 import numpy as np
 import pickle as pkl
 import copy
 import sys
+import torch
 
 import logging
  
@@ -128,8 +130,7 @@ def add_global(k):
     k.insert(0, adj)
     return k
 
-def load_data(dataset_str = 'data/desktop-cpu-core-i7-7820x-fp32.pickle'):
-    sep = 0.9
+def load_data(dataset_str = 'data/desktop-cpu-core-i7-7820x-fp32.pickle', sep = 0.9):
     f = open(dataset_str, 'rb')
     m = pkl.load(f, encoding='latin1')
     total_len = len(m)
@@ -166,9 +167,47 @@ def load_data(dataset_str = 'data/desktop-cpu-core-i7-7820x-fp32.pickle'):
         fetemp = np.array(fetemp)
         feature_t.append(np.eye(7)[fetemp])
     
+    return adj, feature, train_y, adj_t, feature_t, test_y
 
+def load_data_b(dataset_str = 'data/desktop-cpu-core-i7-7820x-fp32.pickle', sep = 0.9):
+    f = open(dataset_str, 'rb')
+    m = pkl.load(f, encoding='latin1')
+    total_len = len(m)
+    graph = list(m.keys())
+    y = list(m.values())
 
-    
+    train_len = int(sep * total_len)
+    test_len = total_len - train_len
+    train_x = graph[:train_len]
+    test_x = graph[train_len:]
+    train_y = y[:train_len]
+    test_y = y[train_len:]
+
+    adj = []
+    feature = []
+    for i in range(train_len):
+        adtemp, fetemp = get_matrix_and_ops(train_x[i])
+        adtemp = np.array(add_global(adtemp))
+        adtemp = normalize_adj_simple(adtemp)
+        L = 9 - len(adtemp)
+        adtemp = np.pad(adtemp, ((0, L), (0, L)), 'constant')
+        adj.append(adtemp)
+        fetemp = [(int(i) - 2)  for i in fetemp]
+        fetemp.insert(0, 6)
+        fetemp = np.array(fetemp)
+        fetemp = np.pad(adtemp, ((0, 0),(0, L)), 'constant')
+        feature.append(np.eye(7)[fetemp])
+    adj_t = []
+    feature_t = []
+    for i in range(test_len):
+        adtemp, fetemp = get_matrix_and_ops(test_x[i])
+        adtemp = np.array(add_global(adtemp))
+        adtemp = normalize_adj_simple(adtemp)
+        adj_t.append(adtemp)
+        fetemp = [(int(i) - 2)  for i in fetemp]
+        fetemp.insert(0, 6)
+        fetemp = np.array(fetemp)
+        feature_t.append(np.eye(7)[fetemp])
     
     return adj, feature, train_y, adj_t, feature_t, test_y
 

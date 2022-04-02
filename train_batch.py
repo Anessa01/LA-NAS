@@ -40,10 +40,10 @@ def main():
     test_len = len(adj_t)
     torch_trainset = Data.TensorDataset(adj, feature, train_y)
     loader = Data.DataLoader(
-    dataset=torch_trainset,
-    batch_size=args.batch_size,
-    shuffle=True,
-    num_workers=0,
+        dataset=torch_trainset,
+        batch_size=args.batch_size,
+        shuffle=True,
+        num_workers=0,
     )
 
     model = MODELS[args.layers]
