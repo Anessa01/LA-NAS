@@ -38,12 +38,15 @@ class GCN(nn.Module):
 
 class GCN_2(nn.Module):
 
-    def __init__(self, input_dim, hidden1_dim, hidden2_dim):
+    def __init__(self, shape):
         super(GCN_2, self).__init__()
-        self.hid = hidden1_dim * hidden2_dim
-        self.conv1 = graph_convolution_layer(input_dim, hidden1_dim)
+        self.input_dim = shape[0]
+        self.hidden1_dim = shape[1]
+        self.hidden2_dim = shape[2] 
+        self.hid = self.hidden1_dim * self.hidden2_dim
+        self.conv1 = graph_convolution_layer(self.input_dim, self.hidden1_dim)
         self.relu = nn.ReLU()
-        self.conv2 = graph_convolution_layer(hidden1_dim, hidden2_dim)
+        self.conv2 = graph_convolution_layer(self.hidden1_dim, self.hidden2_dim)
         self.linear1 = nn.Linear(self.hid, 1)
         self.softmax = nn.Softmax()
         

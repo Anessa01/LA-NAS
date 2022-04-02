@@ -14,7 +14,7 @@ train_len = len(adj)
 test_len = len(adj_t)
 
 #net = GCN(7, 7)
-net = GCN_2(7, 20, 20)
+net = GCN_2([7, 20, 20])
 criterion = nn.L1Loss()
 optimizer = torch.optim.Adam(net.parameters(), 1e-3)
 logger.info('net:GCN_2(7, 20, 20)\t criterion:L1Loss()\t optimizer:Adam(1e-3)')
