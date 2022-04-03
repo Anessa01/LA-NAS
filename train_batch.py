@@ -38,9 +38,9 @@ def main():
     adj, feature, train_y, adj_t, feature_t, test_y = load_data_b()
     train_len = len(adj)
     test_len = len(adj_t)
-    adj = torch.tensor(adj)
-    feature = torch.tensor(feature)
-    train_y = torch.tensor(train_y)
+    adj = torch.tensor(adj, dtype=float32)
+    feature = torch.tensor(feature, dtype=float32)
+    train_y = torch.tensor(train_y, dtype=float32)
 
     torch_trainset = Data.TensorDataset(adj, feature, train_y)
     loader = Data.DataLoader(
@@ -56,7 +56,7 @@ def main():
     net = model(args.param)
     criterion = nn.L1Loss()
     optimizer = torch.optim.Adam(net.parameters(), args.learning_rate)
-    logger.info('net:{}:{}\t criterion:L1Loss()\t optimizer:Adam({}})'.format(model, args.param, args.learning_rate))
+    logger.info('net:{}:{}\t criterion:L1Loss()\t optimizer:Adam({})'.format(model, args.param, args.learning_rate))
     logger.info('avrbound:{}\t latencylimit:{}'.format(errbound, latency_limit))
     logger.info('clear to train')
     for ep in range(epoch):
@@ -68,25 +68,15 @@ def main():
         missaccu_t = 0
         missaccu = 0
 
-        for i in range(train_len):
-            A = torch.tensor(adj[i], dtype=torch.float32)
-            X = torch.tensor(feature[i], dtype=torch.float32)
+        for i, data in enumerate(loader):
+            A, X, Label = data
             Y = net.forward(A, X)
-            #print(Y)
-            label = torch.tensor([train_y[i] * 1000], dtype=float32)
-            loss = criterion(label, Y)
-            accusum += 1 - abs(Y - label) / label
-            if label < latency_limit and Y > latency_limit:
-                missaccu += 1
-            if Y < label * (1 - errbound) or Y > label * (1 + errbound):
-                losssum += 1
+            loss = criterion(Label, Y)
+            accusum += args.batch_size - sum(abs(Y - Label) / Label)
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-        #print('epoch', ep, 'avrboundaccu = ', 1 - losssum / train_len, 'accu = ', accusum.item() / train_len, 'missaccu = ', missaccu / train_len)
-        logger.info('Epoch:[{}/{}]\t avrbaccu={:.6f}\t acc={:.6f}\t missaccu={:.6f}'.format(ep, epoch , 1 - losssum / train_len, accusum.item() / train_len, missaccu / train_len ))
-        #log.writelines('epoch', ep, 'avrboundaccu = ', 1 - losssum / train_len, 'accu = ', accusum.item() / train_len, 'missaccu = ', missaccu / train_len)
-        #print('testing...')
+        logger.info('Epoch:[{}/{}]\t acc={:.6f}\t'.format(ep, epoch , accusum.item() / train_len))
         for i in range(test_len):
             A = torch.tensor(adj_t[i], dtype=torch.float32)
             X = torch.tensor(feature_t[i], dtype=torch.float32)
@@ -99,9 +89,7 @@ def main():
             #if i == 15:
             #    print('pre = ', Y, ', label = ', label)
             accusum_t += 1 - abs(Y - label) / label
-        #print('testepoch', ep, ', avrboundaccu = ', 1 - losssum_t / test_len, ', accu = ', accusum_t.item() / test_len)
         logger.info('Test:\t avrbaccu={:.6f}\t acc={:.6f}\t missaccu={:.6f}'.format(1 - losssum_t / test_len, accusum_t.item() / test_len, missaccu_t / test_len ))
-        #print('missed_accu=', missaccu_t / test_len)
 
 
 

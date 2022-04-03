@@ -3,11 +3,12 @@ import torch
 from torch import dtype, float32, nn
 from utils import *
 from model import GCN, GCN_2
+import time
 
 epoch = 100
 latency_limit = 5
 errbound = 0.1
-logger = get_logger('log/exp20220331.log')
+logger = get_logger('log/train-EXP-{}'.format(time.strftime("%Y%m%d-%H%M%S")))
 
 adj, feature, train_y, adj_t, feature_t, test_y = load_data()
 train_len = len(adj)
