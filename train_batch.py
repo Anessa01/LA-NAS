@@ -4,7 +4,7 @@ import argparse
 from torch import dtype, float32, nn
 import torch.utils.data as Data
 from utils import *
-from model import GCN, GCN_2
+from model import GCN, GCN_2, GCN_3
 import time
 
 
@@ -19,14 +19,14 @@ parser.add_argument('--save', type=str, default='EXP', help='experiment name')
 parser.add_argument('--train_portion', type=float, default=0.9, help='portion of training data')
 parser.add_argument('--latency_limit', type=float, default=5, help='laytency limit for missed accuracy test')
 parser.add_argument('--err_bound', type=float, default=0.1, help='error bound for bounded accuracy test')
-parser.add_argument('--layers', type=int, default=2, help='number of convolutional layers in network')
-parser.add_argument('--param', type=list, default=[7, 20, 20], help='initial parameter size of network')
+parser.add_argument('--models', type=int, default=3, help='number of convolutional layers in network')
+parser.add_argument('--param', type=list, default=[7, 3, 20, 20, 9], help='initial parameter size of network')
 parser.add_argument('--seed', type=int, default=1, help='torch manual seed')
 args = parser.parse_args()
 
-args.save = 'search-{}-{}'.format(args.save, time.strftime("%Y%m%d-%H%M%S"))
+args.save = 'train-{}-{}'.format(args.save, time.strftime("%Y%m%d-%H%M%S"))
 
-MODELS = {1: GCN, 2: GCN_2}
+MODELS = {1: GCN, 2: GCN_2, 3: GCN_3}
 torch.manual_seed(args.seed)
 
 def main():
@@ -39,7 +39,7 @@ def main():
     train_len = len(adj)
     test_len = len(adj_t)
     adj = torch.tensor(adj, dtype=float32)
-    feature = torch.tensor(feature, dtype=float32)
+    feature = torch.unsqueeze(torch.tensor(feature, dtype=float32), dim=1)
     train_y = torch.tensor(train_y, dtype=float32)
 
     torch_trainset = Data.TensorDataset(adj, feature, train_y)
@@ -50,7 +50,7 @@ def main():
         num_workers=0,
     )
 
-    model = MODELS[args.layers]
+    model = MODELS[args.models]
 
     #net = GCN(7, 7)
     net = model(args.param)

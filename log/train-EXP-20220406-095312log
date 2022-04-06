@@ -1,0 +1,3 @@
+[2022-04-06 09:53:19,894][train_batch.py][line:59][INFO] net:<class 'model.GCN_3'>:[7, 3, 20, 20]	 criterion:L1Loss()	 optimizer:Adam(0.001)
+[2022-04-06 09:53:19,895][train_batch.py][line:60][INFO] avrbound:0.1	 latencylimit:5
+[2022-04-06 09:53:19,895][train_batch.py][line:61][INFO] clear to train
