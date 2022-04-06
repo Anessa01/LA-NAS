@@ -183,6 +183,7 @@ def load_data_b(dataset_str = 'data/desktop-cpu-core-i7-7820x-fp32.pickle', sep 
     train_y = y[:train_len]
     test_y = y[train_len:]
 
+    # train set
     adj = []
     feature = []
     for i in range(train_len):
@@ -198,17 +199,23 @@ def load_data_b(dataset_str = 'data/desktop-cpu-core-i7-7820x-fp32.pickle', sep 
         fetemp = np.eye(7)[fetemp]
         fetemp = np.pad(fetemp, ((0, L),(0, 0)), 'constant')
         feature.append(fetemp)
+    
+    #test set
     adj_t = []
     feature_t = []
     for i in range(test_len):
         adtemp, fetemp = get_matrix_and_ops(test_x[i])
         adtemp = np.array(add_global(adtemp))
         adtemp = normalize_adj_simple(adtemp)
+        L = 9 - len(adtemp)
+        adtemp = np.pad(adtemp, ((0, L), (0, L)), 'constant')
         adj_t.append(adtemp)
         fetemp = [(int(i) - 2)  for i in fetemp]
         fetemp.insert(0, 6)
         fetemp = np.array(fetemp)
-        feature_t.append(np.eye(7)[fetemp])
+        fetemp = np.eye(7)[fetemp]
+        fetemp = np.pad(fetemp, ((0, L), (0, 0)), 'constant')
+        feature_t.append(fetemp)
     
     return adj, feature, train_y, adj_t, feature_t, test_y
 

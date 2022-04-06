@@ -98,7 +98,7 @@ class GCN_3(nn.Module):
         F = H.view(H.shape[0], -1)
 
         Y = self.linear1(F)
-        y = self.relu(Y)
+        y = torch.squeeze(self.relu(Y))
 
         return y
     

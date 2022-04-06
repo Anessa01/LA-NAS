@@ -41,14 +41,19 @@ def main():
     adj = torch.tensor(adj, dtype=float32)
     feature = torch.unsqueeze(torch.tensor(feature, dtype=float32), dim=1)
     train_y = torch.tensor(train_y, dtype=float32)
+    adj_t = torch.tensor(adj_t, dtype=float32)
+    feature_t = torch.unsqueeze(torch.tensor(feature_t, dtype=float32), dim=1)
+    test_y = torch.tensor(test_y, dtype=float32)
 
     torch_trainset = Data.TensorDataset(adj, feature, train_y)
+    torch_testset = Data.TensorDataset(adj_t, feature_t, test_y)
     loader = Data.DataLoader(
         dataset=torch_trainset,
         batch_size=args.batch_size,
         shuffle=True,
         num_workers=0,
     )
+    tester = Data.DataLoader(dataset=torch_testset)
 
     model = MODELS[args.models]
 
@@ -62,34 +67,34 @@ def main():
     for ep in range(epoch):
     
         losssum = 0
-        accusum = 0
-        accusum_t = 0
+        errsum = 0
+        errsum_t = 0
         losssum_t = 0
         missaccu_t = 0
         missaccu = 0
 
+        # train_phase
         for i, data in enumerate(loader):
             A, X, Label = data
             Y = net.forward(A, X)
             loss = criterion(Label, Y)
-            accusum += args.batch_size - sum(abs(Y - Label) / Label)
+            print(loss.item())
+            errsum += sum(abs((Y - Label) / Label)).item()
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-        logger.info('Epoch:[{}/{}]\t acc={:.6f}\t'.format(ep, epoch , accusum.item() / train_len))
-        for i in range(test_len):
-            A = torch.tensor(adj_t[i], dtype=torch.float32)
-            X = torch.tensor(feature_t[i], dtype=torch.float32)
+        logger.info('Epoch:[{}/{}]\t acc={:.6f}\t'.format(ep, epoch , 1 -  errsum / train_len))
+
+        # test phase
+        for i, data in enumerate(tester):
+            A, X, Label = data
             Y = net.forward(A, X)
-            label = torch.tensor([test_y[i] * 1000], dtype=float32)
-            if label < latency_limit and Y > latency_limit:
+            errsum_t += sum(abs((Y - Label) / Label)).item()
+            if Label < latency_limit and Y > latency_limit:
                 missaccu_t += 1
-            if Y < label * (1 - errbound) or Y > label * (1 + errbound):
+            if Y < Label * (1 - errbound) or Y > Label * (1 + errbound):
                 losssum_t += 1
-            #if i == 15:
-            #    print('pre = ', Y, ', label = ', label)
-            accusum_t += 1 - abs(Y - label) / label
-        logger.info('Test:\t avrbaccu={:.6f}\t acc={:.6f}\t missaccu={:.6f}'.format(1 - losssum_t / test_len, accusum_t.item() / test_len, missaccu_t / test_len ))
+        logger.info('Test:\t avrbaccu={:.6f}\t acc={:.6f}\t missaccu={:.6f}'.format(1 - losssum_t / test_len, 1 - errsum_t / test_len, missaccu_t / test_len ))
 
 
 
