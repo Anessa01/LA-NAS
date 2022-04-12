@@ -1,0 +1,165 @@
+[2022-04-10 18:41:40,479][train_batch.py][line:76][INFO] net:<class 'model.GCN_3_bn'>:[7, 3, 40, 30, 9]	 criterion:L1Loss()	 optimizer:Adam(0.001)
+[2022-04-10 18:41:40,479][train_batch.py][line:77][INFO] avrbound:0.1	 latencylimit:5
+[2022-04-10 18:41:40,479][train_batch.py][line:78][INFO] clear to train
+[2022-04-10 18:41:49,506][train_batch.py][line:99][INFO] Epoch:[0/1000]	 acc=0.850378	
+[2022-04-10 18:41:51,858][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.625245	 acc=0.847340	 missaccu=0.001308
+[2022-04-10 18:41:55,835][train_batch.py][line:99][INFO] Epoch:[1/1000]	 acc=0.884592	
+[2022-04-10 18:41:57,891][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.537606	 acc=0.838734	 missaccu=0.001308
+[2022-04-10 18:42:01,692][train_batch.py][line:99][INFO] Epoch:[2/1000]	 acc=0.895665	
+[2022-04-10 18:42:03,724][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.699150	 acc=0.908791	 missaccu=0.001308
+[2022-04-10 18:42:07,540][train_batch.py][line:99][INFO] Epoch:[3/1000]	 acc=0.905493	
+[2022-04-10 18:42:09,596][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.676913	 acc=0.917796	 missaccu=0.001308
+[2022-04-10 18:42:13,463][train_batch.py][line:99][INFO] Epoch:[4/1000]	 acc=0.907079	
+[2022-04-10 18:42:15,395][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.617397	 acc=0.922039	 missaccu=0.001308
+[2022-04-10 18:42:19,165][train_batch.py][line:99][INFO] Epoch:[5/1000]	 acc=0.909825	
+[2022-04-10 18:42:21,192][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.625245	 acc=0.918943	 missaccu=0.001308
+[2022-04-10 18:42:24,926][train_batch.py][line:99][INFO] Epoch:[6/1000]	 acc=0.910413	
+[2022-04-10 18:42:26,854][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.784173	 acc=0.932587	 missaccu=0.001308
+[2022-04-10 18:42:30,626][train_batch.py][line:99][INFO] Epoch:[7/1000]	 acc=0.911653	
+[2022-04-10 18:42:32,601][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.721387	 acc=0.929397	 missaccu=0.001308
+[2022-04-10 18:42:36,402][train_batch.py][line:99][INFO] Epoch:[8/1000]	 acc=0.913132	
+[2022-04-10 18:42:38,395][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.724003	 acc=0.935024	 missaccu=0.001308
+[2022-04-10 18:42:42,286][train_batch.py][line:99][INFO] Epoch:[9/1000]	 acc=0.912307	
+[2022-04-10 18:42:44,203][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.649444	 acc=0.926292	 missaccu=0.001308
+[2022-04-10 18:42:47,971][train_batch.py][line:99][INFO] Epoch:[10/1000]	 acc=0.912183	
+[2022-04-10 18:42:50,002][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.778940	 acc=0.937225	 missaccu=0.001308
+[2022-04-10 18:42:53,735][train_batch.py][line:99][INFO] Epoch:[11/1000]	 acc=0.913592	
+[2022-04-10 18:42:55,725][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.608241	 acc=0.919456	 missaccu=0.001308
+[2022-04-10 18:42:59,435][train_batch.py][line:99][INFO] Epoch:[12/1000]	 acc=0.913671	
+[2022-04-10 18:43:01,391][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.879660	 acc=0.939729	 missaccu=0.000000
+[2022-04-10 18:43:05,202][train_batch.py][line:99][INFO] Epoch:[13/1000]	 acc=0.915289	
+[2022-04-10 18:43:07,228][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.876390	 acc=0.939409	 missaccu=0.001308
+[2022-04-10 18:43:11,025][train_batch.py][line:99][INFO] Epoch:[14/1000]	 acc=0.913902	
+[2022-04-10 18:43:13,146][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.886854	 acc=0.939313	 missaccu=0.000000
+[2022-04-10 18:43:16,872][train_batch.py][line:99][INFO] Epoch:[15/1000]	 acc=0.914369	
+[2022-04-10 18:43:18,790][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.830608	 acc=0.936301	 missaccu=0.001308
+[2022-04-10 18:43:22,515][train_batch.py][line:99][INFO] Epoch:[16/1000]	 acc=0.916058	
+[2022-04-10 18:43:24,448][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.880968	 acc=0.937297	 missaccu=0.000000
+[2022-04-10 18:43:28,182][train_batch.py][line:99][INFO] Epoch:[17/1000]	 acc=0.915560	
+[2022-04-10 18:43:30,267][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.831262	 acc=0.937059	 missaccu=0.001308
+[2022-04-10 18:43:33,920][train_batch.py][line:99][INFO] Epoch:[18/1000]	 acc=0.915540	
+[2022-04-10 18:43:35,828][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.859385	 acc=0.936774	 missaccu=0.001308
+[2022-04-10 18:43:39,395][train_batch.py][line:99][INFO] Epoch:[19/1000]	 acc=0.914463	
+[2022-04-10 18:43:41,480][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.597776	 acc=0.902416	 missaccu=0.000000
+[2022-04-10 18:43:45,444][train_batch.py][line:99][INFO] Epoch:[20/1000]	 acc=0.916862	
+[2022-04-10 18:43:47,529][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.827338	 acc=0.943562	 missaccu=0.000000
+[2022-04-10 18:43:51,393][train_batch.py][line:99][INFO] Epoch:[21/1000]	 acc=0.917082	
+[2022-04-10 18:43:53,370][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.748855	 acc=0.937960	 missaccu=0.000000
+[2022-04-10 18:43:57,194][train_batch.py][line:99][INFO] Epoch:[22/1000]	 acc=0.916508	
+[2022-04-10 18:43:59,150][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.534990	 acc=0.895491	 missaccu=0.001308
+[2022-04-10 18:44:02,972][train_batch.py][line:99][INFO] Epoch:[23/1000]	 acc=0.916621	
+[2022-04-10 18:44:04,931][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.795945	 acc=0.936656	 missaccu=0.001308
+[2022-04-10 18:44:08,751][train_batch.py][line:99][INFO] Epoch:[24/1000]	 acc=0.916718	
+[2022-04-10 18:44:10,744][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.769130	 acc=0.940912	 missaccu=0.001308
+[2022-04-10 18:44:14,463][train_batch.py][line:99][INFO] Epoch:[25/1000]	 acc=0.917499	
+[2022-04-10 18:44:16,399][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.667103	 acc=0.928719	 missaccu=0.001308
+[2022-04-10 18:44:20,212][train_batch.py][line:99][INFO] Epoch:[26/1000]	 acc=0.918522	
+[2022-04-10 18:44:22,192][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.672989	 acc=0.926512	 missaccu=0.001308
+[2022-04-10 18:44:25,945][train_batch.py][line:99][INFO] Epoch:[27/1000]	 acc=0.917850	
+[2022-04-10 18:44:27,992][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.578156	 acc=0.902575	 missaccu=0.001308
+[2022-04-10 18:44:31,762][train_batch.py][line:99][INFO] Epoch:[28/1000]	 acc=0.918128	
+[2022-04-10 18:44:33,906][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.788751	 acc=0.929228	 missaccu=0.000000
+[2022-04-10 18:44:37,718][train_batch.py][line:99][INFO] Epoch:[29/1000]	 acc=0.918783	
+[2022-04-10 18:44:39,747][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.627861	 acc=0.916288	 missaccu=0.001308
+[2022-04-10 18:44:43,619][train_batch.py][line:99][INFO] Epoch:[30/1000]	 acc=0.917234	
+[2022-04-10 18:44:45,538][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.659908	 acc=0.920406	 missaccu=0.001308
+[2022-04-10 18:44:49,262][train_batch.py][line:99][INFO] Epoch:[31/1000]	 acc=0.917464	
+[2022-04-10 18:44:51,393][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.619359	 acc=0.915854	 missaccu=0.001308
+[2022-04-10 18:44:55,216][train_batch.py][line:99][INFO] Epoch:[32/1000]	 acc=0.918370	
+[2022-04-10 18:44:57,241][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.691302	 acc=0.923467	 missaccu=0.001308
+[2022-04-10 18:45:01,042][train_batch.py][line:99][INFO] Epoch:[33/1000]	 acc=0.918499	
+[2022-04-10 18:45:03,018][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.669065	 acc=0.917294	 missaccu=0.001308
+[2022-04-10 18:45:06,733][train_batch.py][line:99][INFO] Epoch:[34/1000]	 acc=0.918952	
+[2022-04-10 18:45:08,669][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.731197	 acc=0.940316	 missaccu=0.001308
+[2022-04-10 18:45:12,439][train_batch.py][line:99][INFO] Epoch:[35/1000]	 acc=0.917363	
+[2022-04-10 18:45:14,478][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.606279	 acc=0.900322	 missaccu=0.001308
+[2022-04-10 18:45:18,099][train_batch.py][line:99][INFO] Epoch:[36/1000]	 acc=0.918590	
+[2022-04-10 18:45:20,027][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.816220	 acc=0.934837	 missaccu=0.001308
+[2022-04-10 18:45:23,842][train_batch.py][line:99][INFO] Epoch:[37/1000]	 acc=0.919593	
+[2022-04-10 18:45:25,796][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.691302	 acc=0.923523	 missaccu=0.001308
+[2022-04-10 18:45:29,659][train_batch.py][line:99][INFO] Epoch:[38/1000]	 acc=0.918627	
+[2022-04-10 18:45:31,736][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.699804	 acc=0.936759	 missaccu=0.001308
+[2022-04-10 18:45:35,585][train_batch.py][line:99][INFO] Epoch:[39/1000]	 acc=0.918492	
+[2022-04-10 18:45:37,694][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.595814	 acc=0.895482	 missaccu=0.001308
+[2022-04-10 18:45:41,408][train_batch.py][line:99][INFO] Epoch:[40/1000]	 acc=0.918320	
+[2022-04-10 18:45:43,534][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.849575	 acc=0.941812	 missaccu=0.000000
+[2022-04-10 18:45:47,451][train_batch.py][line:99][INFO] Epoch:[41/1000]	 acc=0.919246	
+[2022-04-10 18:45:49,411][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.801831	 acc=0.936260	 missaccu=0.001308
+[2022-04-10 18:45:53,618][train_batch.py][line:99][INFO] Epoch:[42/1000]	 acc=0.918819	
+[2022-04-10 18:45:55,863][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.711576	 acc=0.929272	 missaccu=0.001308
+[2022-04-10 18:45:59,994][train_batch.py][line:99][INFO] Epoch:[43/1000]	 acc=0.919775	
+[2022-04-10 18:46:01,967][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.616743	 acc=0.906298	 missaccu=0.001308
+[2022-04-10 18:46:05,763][train_batch.py][line:99][INFO] Epoch:[44/1000]	 acc=0.919319	
+[2022-04-10 18:46:07,783][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.769130	 acc=0.936946	 missaccu=0.000000
+[2022-04-10 18:46:11,546][train_batch.py][line:99][INFO] Epoch:[45/1000]	 acc=0.920409	
+[2022-04-10 18:46:13,560][train_batch.py][line:114][INFO] model saved!
+[2022-04-10 18:46:13,560][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.905821	 acc=0.947581	 missaccu=0.001308
+[2022-04-10 18:46:17,235][train_batch.py][line:99][INFO] Epoch:[46/1000]	 acc=0.920013	
+[2022-04-10 18:46:19,219][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.667757	 acc=0.926359	 missaccu=0.001308
+[2022-04-10 18:46:22,951][train_batch.py][line:99][INFO] Epoch:[47/1000]	 acc=0.919387	
+[2022-04-10 18:46:25,044][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.767822	 acc=0.938691	 missaccu=0.001308
+[2022-04-10 18:46:28,782][train_batch.py][line:99][INFO] Epoch:[48/1000]	 acc=0.919550	
+[2022-04-10 18:46:30,851][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.636364	 acc=0.909933	 missaccu=0.001308
+[2022-04-10 18:46:34,590][train_batch.py][line:99][INFO] Epoch:[49/1000]	 acc=0.918728	
+[2022-04-10 18:46:36,612][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.830608	 acc=0.938427	 missaccu=0.001308
+[2022-04-10 18:46:40,398][train_batch.py][line:99][INFO] Epoch:[50/1000]	 acc=0.920511	
+[2022-04-10 18:46:42,437][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.890778	 acc=0.943364	 missaccu=0.000000
+[2022-04-10 18:46:46,214][train_batch.py][line:99][INFO] Epoch:[51/1000]	 acc=0.919337	
+[2022-04-10 18:46:48,221][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.564421	 acc=0.883328	 missaccu=0.001308
+[2022-04-10 18:46:52,007][train_batch.py][line:99][INFO] Epoch:[52/1000]	 acc=0.919498	
+[2022-04-10 18:46:53,982][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.812296	 acc=0.943719	 missaccu=0.001308
+[2022-04-10 18:46:57,745][train_batch.py][line:99][INFO] Epoch:[53/1000]	 acc=0.919906	
+[2022-04-10 18:46:59,672][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.827338	 acc=0.938631	 missaccu=0.001308
+[2022-04-10 18:47:03,529][train_batch.py][line:99][INFO] Epoch:[54/1000]	 acc=0.919264	
+[2022-04-10 18:47:05,661][train_batch.py][line:114][INFO] model saved!
+[2022-04-10 18:47:05,661][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.903205	 acc=0.946851	 missaccu=0.001308
+[2022-04-10 18:47:09,431][train_batch.py][line:99][INFO] Epoch:[55/1000]	 acc=0.919412	
+[2022-04-10 18:47:11,350][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.877044	 acc=0.941126	 missaccu=0.001308
+[2022-04-10 18:47:15,048][train_batch.py][line:99][INFO] Epoch:[56/1000]	 acc=0.920047	
+[2022-04-10 18:47:17,134][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.695880	 acc=0.924611	 missaccu=0.001308
+[2022-04-10 18:47:20,916][train_batch.py][line:99][INFO] Epoch:[57/1000]	 acc=0.919724	
+[2022-04-10 18:47:23,005][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.890124	 acc=0.945328	 missaccu=0.001308
+[2022-04-10 18:47:26,949][train_batch.py][line:99][INFO] Epoch:[58/1000]	 acc=0.920021	
+[2022-04-10 18:47:29,240][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.878352	 acc=0.941469	 missaccu=0.001308
+[2022-04-10 18:47:33,164][train_batch.py][line:99][INFO] Epoch:[59/1000]	 acc=0.920562	
+[2022-04-10 18:47:35,225][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.890124	 acc=0.942280	 missaccu=0.001308
+[2022-04-10 18:47:39,011][train_batch.py][line:99][INFO] Epoch:[60/1000]	 acc=0.920233	
+[2022-04-10 18:47:40,993][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.837148	 acc=0.936990	 missaccu=0.001308
+[2022-04-10 18:47:44,639][train_batch.py][line:99][INFO] Epoch:[61/1000]	 acc=0.920182	
+[2022-04-10 18:47:46,583][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.630477	 acc=0.911492	 missaccu=0.000000
+[2022-04-10 18:47:50,352][train_batch.py][line:99][INFO] Epoch:[62/1000]	 acc=0.920149	
+[2022-04-10 18:47:52,391][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.829300	 acc=0.936033	 missaccu=0.001308
+[2022-04-10 18:47:56,185][train_batch.py][line:99][INFO] Epoch:[63/1000]	 acc=0.919197	
+[2022-04-10 18:47:58,168][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.708306	 acc=0.934266	 missaccu=0.001308
+[2022-04-10 18:48:01,829][train_batch.py][line:99][INFO] Epoch:[64/1000]	 acc=0.919935	
+[2022-04-10 18:48:03,857][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.780249	 acc=0.943619	 missaccu=0.001308
+[2022-04-10 18:48:07,738][train_batch.py][line:99][INFO] Epoch:[65/1000]	 acc=0.920670	
+[2022-04-10 18:48:09,901][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.884892	 acc=0.945165	 missaccu=0.001308
+[2022-04-10 18:48:13,593][train_batch.py][line:99][INFO] Epoch:[66/1000]	 acc=0.919829	
+[2022-04-10 18:48:15,591][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.839765	 acc=0.937124	 missaccu=0.001308
+[2022-04-10 18:48:19,346][train_batch.py][line:99][INFO] Epoch:[67/1000]	 acc=0.920424	
+[2022-04-10 18:48:21,367][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.813604	 acc=0.941586	 missaccu=0.001308
+[2022-04-10 18:48:25,186][train_batch.py][line:99][INFO] Epoch:[68/1000]	 acc=0.921720	
+[2022-04-10 18:48:27,113][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.828646	 acc=0.940467	 missaccu=0.001308
+[2022-04-10 18:48:30,852][train_batch.py][line:99][INFO] Epoch:[69/1000]	 acc=0.921008	
+[2022-04-10 18:48:32,843][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.676913	 acc=0.930428	 missaccu=0.001308
+[2022-04-10 18:48:36,605][train_batch.py][line:99][INFO] Epoch:[70/1000]	 acc=0.921012	
+[2022-04-10 18:48:38,565][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.754088	 acc=0.919578	 missaccu=0.001308
+[2022-04-10 18:48:42,171][train_batch.py][line:99][INFO] Epoch:[71/1000]	 acc=0.920806	
+[2022-04-10 18:48:44,160][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.891432	 acc=0.943053	 missaccu=0.001308
+[2022-04-10 18:48:47,852][train_batch.py][line:99][INFO] Epoch:[72/1000]	 acc=0.919235	
+[2022-04-10 18:48:49,773][train_batch.py][line:114][INFO] model saved!
+[2022-04-10 18:48:49,773][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.903205	 acc=0.941741	 missaccu=0.000000
+[2022-04-10 18:48:53,534][train_batch.py][line:99][INFO] Epoch:[73/1000]	 acc=0.920581	
+[2022-04-10 18:48:55,589][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.884238	 acc=0.947400	 missaccu=0.001308
+[2022-04-10 18:48:59,288][train_batch.py][line:99][INFO] Epoch:[74/1000]	 acc=0.921051	
+[2022-04-10 18:49:01,342][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.827992	 acc=0.938677	 missaccu=0.001308
+[2022-04-10 18:49:05,175][train_batch.py][line:99][INFO] Epoch:[75/1000]	 acc=0.921243	
+[2022-04-10 18:49:07,252][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.688685	 acc=0.935425	 missaccu=0.001308
+[2022-04-10 18:49:10,897][train_batch.py][line:99][INFO] Epoch:[76/1000]	 acc=0.920147	
+[2022-04-10 18:49:12,935][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.875082	 acc=0.942140	 missaccu=0.001308
+[2022-04-10 18:49:16,767][train_batch.py][line:99][INFO] Epoch:[77/1000]	 acc=0.921089	
+[2022-04-10 18:49:18,884][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.635056	 acc=0.917137	 missaccu=0.001308
+[2022-04-10 18:49:22,630][train_batch.py][line:99][INFO] Epoch:[78/1000]	 acc=0.921122	
+[2022-04-10 18:49:24,551][train_batch.py][line:115][INFO] Test:	 avrbaccu=0.689993	 acc=0.920050	 missaccu=0.000000
+[2022-04-10 18:49:28,227][train_batch.py][line:99][INFO] Epoch:[79/1000]	 acc=0.920788	

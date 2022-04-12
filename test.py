@@ -1,0 +1,68 @@
+from cgi import test
+import torch 
+import argparse
+from torch import dtype, float32, ne, nn
+import torch.utils.data as Data
+from utils import *
+from model import GCN, GCN_2, GCN_3, GCN_3_bn
+import time
+
+
+parser = argparse.ArgumentParser("LA-NAS")
+parser.add_argument('--gpu', type=int, default=0, help='gpu device id')
+parser.add_argument('--load_path', type=str, default='Saved/model-20220410-091642', help='load model path')
+parser.add_argument('--latency_limit', type=float, default=5, help='laytency limit for missed accuracy test')
+parser.add_argument('--err_bound', type=float, default=0.15, help='error bound for bounded accuracy test')
+parser.add_argument('--seed', type=int, default=1, help='torch manual seed')
+args = parser.parse_args()
+torch.manual_seed(args.seed)
+
+def main():
+
+    use_gpu = torch.cuda.is_available()
+
+    latency_limit = args.latency_limit
+    errbound = args.err_bound
+    adj, feature, train_y, adj_t, feature_t, test_y = load_data_b()
+    train_len = len(adj)
+    test_len = len(adj_t)
+
+    if use_gpu:
+    
+        adj = torch.tensor(adj, dtype=float32).cuda()
+        feature = torch.unsqueeze(torch.tensor(feature, dtype=float32), dim=1).cuda()
+        train_y = 1000 * torch.tensor(train_y, dtype=float32).cuda()
+        adj_t = torch.tensor(adj_t, dtype=float32).cuda()
+        feature_t = torch.unsqueeze(torch.tensor(feature_t, dtype=float32), dim=1).cuda()
+        test_y = 1000 * torch.tensor(test_y, dtype=float32).cuda()
+
+    torch_trainset = Data.TensorDataset(adj, feature, train_y)
+    torch_testset = Data.TensorDataset(adj_t, feature_t, test_y)
+    tester = Data.DataLoader(dataset=torch_testset)
+
+    net = torch.load(args.load_path)
+    if use_gpu:
+        net.cuda()
+    criterion = nn.L1Loss()
+    errsum = 0
+    errsum_t = 0
+    losssum_t = 0
+    missaccu_t = 0
+    # test phase
+    net.eval()
+    for i, data in enumerate(tester):
+        A, X, Label = data
+        Y = net.forward(A, X)
+        errsum_t += sum(abs((Y - Label) / Label)).item()
+        if Label < latency_limit and Y > latency_limit:
+            missaccu_t += 1
+        if Y < Label * (1 - errbound) or Y > Label * (1 + errbound):
+            losssum_t += 1
+    avrbaccu = 1 - losssum_t / test_len
+    print('Test:\t avrbaccu={:.6f}\t acc={:.6f}\t missaccu={:.6f}'.format(avrbaccu, 1 - errsum_t / test_len, missaccu_t / test_len ))
+
+    print('Train finished')
+
+    
+if __name__ == '__main__':
+    main()

@@ -22,11 +22,16 @@ _opname_to_index = {
 
 
 def normalize_adj_simple(adj):
+    #The model saved before 20220411 are using Dr^-1 A Dc^-1 instead of Dr^-(1/2) A Dc^-(1/2)
     rowsum = np.array(adj.sum(1))
-    d_inv_sqrt = np.power(rowsum, -1.).flatten()
-    d_inv_sqrt[np.isinf(d_inv_sqrt)] = 0.
-    d_mat_inv_sqrt = np.diag(d_inv_sqrt)
-    return np.matmul(d_mat_inv_sqrt, adj)
+    colsum = np.array(adj.sum(0))
+    d_inv_sqrt_r = np.power(rowsum, -1.).flatten()
+    d_inv_sqrt_r[np.isinf(d_inv_sqrt_r)] = 0.
+    d_mat_inv_sqrt_r = np.diag(d_inv_sqrt_r)
+    d_inv_sqrt_c = np.power(colsum, -1.).flatten()
+    d_inv_sqrt_c[np.isinf(d_inv_sqrt_c)] = 0.
+    d_mat_inv_sqrt_c = np.diag(d_inv_sqrt_c)
+    return np.matmul(d_mat_inv_sqrt_r, adj, d_mat_inv_sqrt_c)
 
 def normalize_adj(adj):
     rowsum = np.array(adj.sum(1))

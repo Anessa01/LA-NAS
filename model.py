@@ -84,6 +84,8 @@ class GCN_3(nn.Module):
         self.hid = self.left_dim * self.hidden2_dim * self.channel_dim * self.channel_dim
         self.conv1 = graph_convolution_layer_channeled(self.channel_dim, self.input_dim, self.hidden1_dim)
         self.relu = nn.ReLU()
+        self.bn1 = nn.BatchNorm2d(self.channel_dim)
+        self.bn2 = nn.BatchNorm2d(self.channel_dim * self.channel_dim)
         self.conv2 = graph_convolution_layer_channeled(self.channel_dim, self.hidden1_dim, self.hidden2_dim)
         self.linear1 = nn.Linear(self.hid, 1)
         self.softmax = nn.Softmax()
@@ -97,7 +99,7 @@ class GCN_3(nn.Module):
 
         F = H.view(H.shape[0], -1)
 
-        Y = self.linear1(F)
+        Y = self.linear1(F) 
         y = torch.squeeze(self.relu(Y))
 
         return y
@@ -105,6 +107,40 @@ class GCN_3(nn.Module):
     def loss(y_pred, y):
         return nn.CrossEntropyLoss(y_pred, y)
 
+class GCN_3_bn(nn.Module):
+    def __init__(self, shape):
+        super(GCN_3_bn, self).__init__()
+        self.input_dim = shape[0]       #the input dimension d.H. num of features in feature matrix
+        self.channel_dim = shape[1]     #the channel dimension initializing both 2 convolution layers
+        self.hidden1_dim = shape[2]     #the output dimension of conv1
+        self.hidden2_dim = shape[3]     #the output dimension of conv2
+        self.left_dim = shape[4]        #the dimension of adjacency matrix: used for initializing linear layer
+        self.hid = self.left_dim * self.hidden2_dim * self.channel_dim * self.channel_dim
+        self.conv1 = graph_convolution_layer_channeled(self.channel_dim, self.input_dim, self.hidden1_dim)
+        self.relu = nn.ReLU()
+        self.bn1 = nn.BatchNorm2d(self.channel_dim)
+        self.bn2 = nn.BatchNorm2d(self.channel_dim * self.channel_dim)
+        self.conv2 = graph_convolution_layer_channeled(self.channel_dim, self.hidden1_dim, self.hidden2_dim)
+        self.linear1 = nn.Linear(self.hid, 1)
+        self.softmax = nn.Softmax()
+        
+
+
+    def forward(self, A, X):
+        H = self.conv1(A, X)
+        H = self.relu(H)
+        H = self.conv2(A, H)
+        H = self.bn2(H)
+
+        F = H.view(H.shape[0], -1)
+
+        Y = self.linear1(F) 
+        y = torch.squeeze(self.relu(Y))
+
+        return y
+    
+    def loss(y_pred, y):
+        return nn.CrossEntropyLoss(y_pred, y)
 
 
 
