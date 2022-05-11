@@ -1,0 +1,21 @@
+[2022-05-10 09:47:27,735][train_source_domain.py][line:80][INFO] dataset:data/desktop-cpu-core-i7-7820x-fp32.pickle
+[2022-05-10 09:47:27,736][train_source_domain.py][line:81][INFO] net:<class 'model.GCN_3'>:[7, 3, 40, 30, 9]	 criterion:L1Loss()	 optimizer:Adam(0.001)
+[2022-05-10 09:47:27,737][train_source_domain.py][line:82][INFO] avrbound:0.1	 latencylimit:5	 R_seed:1
+[2022-05-10 09:47:27,737][train_source_domain.py][line:83][INFO] clear to train
+[2022-05-10 09:47:34,242][train_source_domain.py][line:106][INFO] Epoch:[0/1000]	 acc=0.889531	
+[2022-05-10 09:47:35,025][train_source_domain.py][line:122][INFO] Test:	 avrbaccu=0.746667	 acc=0.926432	 missaccu=0.000000
+[2022-05-10 09:47:40,888][train_source_domain.py][line:106][INFO] Epoch:[1/1000]	 acc=0.904824	
+[2022-05-10 09:47:41,633][train_source_domain.py][line:122][INFO] Test:	 avrbaccu=0.581333	 acc=0.885296	 missaccu=0.000000
+[2022-05-10 09:47:47,409][train_source_domain.py][line:106][INFO] Epoch:[2/1000]	 acc=0.909282	
+[2022-05-10 09:47:48,121][train_source_domain.py][line:122][INFO] Test:	 avrbaccu=0.930667	 acc=0.959108	 missaccu=0.000000
+[2022-05-10 09:47:53,301][train_source_domain.py][line:106][INFO] Epoch:[3/1000]	 acc=0.909050	
+[2022-05-10 09:47:54,099][train_source_domain.py][line:121][INFO] model saved!
+[2022-05-10 09:47:54,100][train_source_domain.py][line:122][INFO] Test:	 avrbaccu=0.952000	 acc=0.963107	 missaccu=0.000000
+[2022-05-10 09:47:59,368][train_source_domain.py][line:106][INFO] Epoch:[4/1000]	 acc=0.912695	
+[2022-05-10 09:48:00,124][train_source_domain.py][line:122][INFO] Test:	 avrbaccu=0.808000	 acc=0.939127	 missaccu=0.000000
+[2022-05-10 09:48:05,978][train_source_domain.py][line:106][INFO] Epoch:[5/1000]	 acc=0.916078	
+[2022-05-10 09:48:06,735][train_source_domain.py][line:122][INFO] Test:	 avrbaccu=0.546667	 acc=0.911139	 missaccu=0.000000
+[2022-05-10 09:48:12,518][train_source_domain.py][line:106][INFO] Epoch:[6/1000]	 acc=0.918223	
+[2022-05-10 09:48:13,131][train_source_domain.py][line:122][INFO] Test:	 avrbaccu=0.661333	 acc=0.771219	 missaccu=0.000000
+[2022-05-10 09:48:18,093][train_source_domain.py][line:106][INFO] Epoch:[7/1000]	 acc=0.917277	
+[2022-05-10 09:48:18,865][train_source_domain.py][line:122][INFO] Test:	 avrbaccu=0.904000	 acc=0.951152	 missaccu=0.000000

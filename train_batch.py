@@ -22,6 +22,7 @@ parser.add_argument('--err_bound', type=float, default=0.1, help='error bound fo
 parser.add_argument('--models', type=int, default=3, help='number of convolutional layers in network')
 parser.add_argument('--param', type=list, default=[7, 3, 40, 30, 9], help='initial parameter size of network')
 parser.add_argument('--seed', type=int, default=1, help='torch manual seed')
+parser.add_argument('--dataset', type=str, default='data/desktop-cpu-core-i7-7820x-fp32.pickle', help='dataset dir')
 args = parser.parse_args()
 
 args.save = 'train-{}-{}'.format(args.save, time.strftime("%Y%m%d-%H%M%S"))
@@ -34,12 +35,13 @@ def main():
 
     use_gpu = torch.cuda.is_available()
 
+    dataset = args.dataset
     epoch = args.epochs
     latency_limit = args.latency_limit
     errbound = args.err_bound
     train_portion = args.train_portion
     logger = get_logger('log/' + args.save + 'log')
-    adj, feature, train_y, adj_t, feature_t, test_y = load_data_b(sep=train_portion)
+    adj, feature, train_y, adj_t, feature_t, test_y = load_data_b(dataset_str=dataset, sep=train_portion)
     train_len = len(adj)
     test_len = len(adj_t)
 
@@ -72,7 +74,9 @@ def main():
     if use_gpu:
         net.cuda()
     criterion = nn.L1Loss()
-    optimizer = torch.optim.Adam(net.parameters(), args.learning_rate)
+    optimizer = torch.optim.Adam(net.parameters(), args.learning_rate)     
+    scheduler = torch.optim.lr_scheduler.StepLR(optimizer,step_size=5,gamma = 0.9)
+    logger.info('dataset:{}'.format(dataset))
     logger.info('net:{}:{}\t criterion:L1Loss()\t optimizer:Adam({})'.format(model, args.param, args.learning_rate))
     logger.info('avrbound:{}\t latencylimit:{}\t R_seed:{}'.format(errbound, latency_limit, args.seed))
     logger.info('clear to train')
@@ -96,6 +100,8 @@ def main():
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+
+        scheduler.step()
         logger.info('Epoch:[{}/{}]\t acc={:.6f}\t'.format(ep, epoch , 1 -  errsum / train_len))
 
         # test phase
@@ -109,7 +115,7 @@ def main():
             if Y < Label * (1 - errbound) or Y > Label * (1 + errbound):
                 losssum_t += 1
         avrbaccu = 1 - losssum_t / test_len
-        if avrbaccu > 0.91:
+        if avrbaccu > 0.94:
             torch.save(net, args.model_path)
             logger.info('model saved!')
         logger.info('Test:\t avrbaccu={:.6f}\t acc={:.6f}\t missaccu={:.6f}'.format(avrbaccu, 1 - errsum_t / test_len, missaccu_t / test_len ))

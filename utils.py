@@ -34,6 +34,7 @@ def normalize_adj_simple(adj):
     return np.matmul(d_mat_inv_sqrt_r, adj, d_mat_inv_sqrt_c)
 
 def normalize_adj(adj):
+    adj = 0.5 * (adj + adj.transpose())
     rowsum = np.array(adj.sum(1))
     d_inv_sqrt = np.power(rowsum, -0.5).flatten()
     d_inv_sqrt[np.isinf(d_inv_sqrt)] = 0.
@@ -180,6 +181,7 @@ def load_data_b(dataset_str = 'data/desktop-cpu-core-i7-7820x-fp32.pickle', sep 
     total_len = len(m)
     graph = list(m.keys())
     y = list(m.values())
+    #y = [i * 10 for i in list(m.values())]
 
     train_len = int(sep * total_len)
     test_len = total_len - train_len
@@ -194,7 +196,7 @@ def load_data_b(dataset_str = 'data/desktop-cpu-core-i7-7820x-fp32.pickle', sep 
     for i in range(train_len):
         adtemp, fetemp = get_matrix_and_ops(train_x[i])
         adtemp = np.array(add_global(adtemp))
-        adtemp = normalize_adj_simple(adtemp)
+        adtemp = normalize_adj(adtemp)
         L = 9 - len(adtemp)
         adtemp = np.pad(adtemp, ((0, L), (0, L)), 'constant')
         adj.append(adtemp)
@@ -211,7 +213,7 @@ def load_data_b(dataset_str = 'data/desktop-cpu-core-i7-7820x-fp32.pickle', sep 
     for i in range(test_len):
         adtemp, fetemp = get_matrix_and_ops(test_x[i])
         adtemp = np.array(add_global(adtemp))
-        adtemp = normalize_adj_simple(adtemp)
+        adtemp = normalize_adj(adtemp)
         L = 9 - len(adtemp)
         adtemp = np.pad(adtemp, ((0, L), (0, L)), 'constant')
         adj_t.append(adtemp)
@@ -223,6 +225,20 @@ def load_data_b(dataset_str = 'data/desktop-cpu-core-i7-7820x-fp32.pickle', sep 
         feature_t.append(fetemp)
     
     return adj, feature, train_y, adj_t, feature_t, test_y
+
+def gen_negative_instance_N101(N=2e3, size_A=9, size_X=7):
+    adj = []
+    feature = []
+    y = []
+    for i in range(N):
+        adtemp = np.random.randint(0, 2, (size_A, size_A))
+        adtemp = normalize_adj_simple(adtemp)
+        adj.append(adtemp)
+        fetemp = np.random.randint(0, size_X, size_A)
+        fetemp = np.eye(size_X)[fetemp]
+        feature.append(fetemp)
+        y.append(0)
+    return adj, feature, y
 
 
 def get_logger(filename, verbosity=1, name=None):
